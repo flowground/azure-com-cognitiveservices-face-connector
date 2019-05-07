@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "largePersonGroupId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9-_]+$"
+        },
+        "personId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "persistedFaceId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "requestBody": {
+            "description": "Request to update face data.",
+            "properties": {
+                "userData": {
+                    "description": "User-provided data attached to the face. The size limit is 1KB.",
+                    "maxLength": 1024,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

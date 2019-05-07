@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request body for group request.",
+            "properties": {
+                "faceIds": {
+                    "description": "Array of candidate faceId created by Face - Detect. The maximum is 1000 faces",
+                    "items": {
+                        "format": "uuid",
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "maxItems": 1000,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "faceIds"
+            ],
+            "type": "object"
+        }
+    }
+}

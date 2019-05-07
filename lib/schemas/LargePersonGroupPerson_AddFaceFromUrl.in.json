@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "largePersonGroupId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9-_]+$"
+        },
+        "personId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "userData": {
+            "required": false,
+            "type": "string",
+            "maxLength": 1024
+        },
+        "targetFace": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "maxItems": 4,
+                "minItems": 4,
+                "type": "integer",
+                "nullable": false
+            }
+        },
+        "requestBody": {
+            "properties": {
+                "url": {
+                    "description": "Publicly reachable URL of an image",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        }
+    }
+}

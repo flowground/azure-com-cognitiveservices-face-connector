@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request body for identify face operation.",
+            "properties": {
+                "confidenceThreshold": {
+                    "description": "Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "faceIds": {
+                    "description": "Array of query faces faceIds, created by the Face - Detect. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].",
+                    "items": {
+                        "format": "uuid",
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "maxItems": 10,
+                    "type": "array"
+                },
+                "largePersonGroupId": {
+                    "description": "LargePersonGroupId of the target large person group, created by LargePersonGroup - Create. Parameter personGroupId and largePersonGroupId should not be provided at the same time.",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9-_]+$",
+                    "type": "string"
+                },
+                "maxNumOfCandidatesReturned": {
+                    "default": 1,
+                    "description": "The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).",
+                    "maximum": 5,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "personGroupId": {
+                    "description": "PersonGroupId of the target person group, created by PersonGroup - Create. Parameter personGroupId and largePersonGroupId should not be provided at the same time.",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9-_]+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "faceIds"
+            ],
+            "type": "object"
+        }
+    }
+}

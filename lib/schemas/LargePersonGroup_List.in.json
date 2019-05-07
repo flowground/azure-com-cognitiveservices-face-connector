@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "start": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        },
+        "top": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 1000
+        }
+    }
+}

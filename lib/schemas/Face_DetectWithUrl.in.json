@@ -1,0 +1,53 @@
+{
+    "type": "object",
+    "properties": {
+        "returnFaceId": {
+            "type": "boolean",
+            "default": true
+        },
+        "returnFaceLandmarks": {
+            "type": "boolean",
+            "default": false
+        },
+        "returnFaceAttributes": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "age",
+                    "gender",
+                    "headPose",
+                    "smile",
+                    "facialHair",
+                    "glasses",
+                    "emotion",
+                    "hair",
+                    "makeup",
+                    "occlusion",
+                    "accessories",
+                    "blur",
+                    "exposure",
+                    "noise"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                    "modelAsString": false,
+                    "name": "FaceAttributeType"
+                },
+                "nullable": false
+            }
+        },
+        "requestBody": {
+            "properties": {
+                "url": {
+                    "description": "Publicly reachable URL of an image",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        }
+    }
+}

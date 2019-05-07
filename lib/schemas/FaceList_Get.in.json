@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "faceListId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9-_]+$"
+        }
+    }
+}

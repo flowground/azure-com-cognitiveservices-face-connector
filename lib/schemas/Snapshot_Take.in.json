@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request body for taking snapshot operation.",
+            "properties": {
+                "applyScope": {
+                    "description": "User specified array of target Face subscription ids for the snapshot. For each snapshot, only subscriptions included in the applyScope of Snapshot - Take can apply it.",
+                    "items": {
+                        "format": "uuid",
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "type": "array"
+                },
+                "objectId": {
+                    "description": "User specified source object id to take snapshot from.",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9-_]+$",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "User specified type for the source object to take snapshot from. Currently FaceList, PersonGroup, LargeFaceList and LargePersonGroup are supported.",
+                    "enum": [
+                        "FaceList",
+                        "LargeFaceList",
+                        "LargePersonGroup",
+                        "PersonGroup"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "SnapshotObjectType"
+                    }
+                },
+                "userData": {
+                    "description": "User specified data about the snapshot for any purpose. Length should not exceed 16KB.",
+                    "maxLength": 16384,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "objectId",
+                "applyScope"
+            ],
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "personGroupId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9-_]+$"
+        },
+        "personId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "requestBody": {
+            "description": "A combination of user defined name and user specified data for the person, largePersonGroup/personGroup, and largeFaceList/faceList.",
+            "properties": {
+                "name": {
+                    "description": "User defined name, maximum length is 128.",
+                    "maxLength": 128,
+                    "type": "string"
+                },
+                "userData": {
+                    "description": "User specified data. Length should not exceed 16KB.",
+                    "maxLength": 16384,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

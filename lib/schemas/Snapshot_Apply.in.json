@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "snapshotId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "requestBody": {
+            "description": "Request body for applying snapshot operation.",
+            "properties": {
+                "mode": {
+                    "default": "CreateNew",
+                    "description": "Snapshot applying mode. Currently only CreateNew is supported, which means the apply operation will fail if target subscription already contains an object of same type and using the same objectId. Users can specify the \"objectId\" in request body to avoid such conflicts.",
+                    "enum": [
+                        "CreateNew"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "SnapshotApplyMode"
+                    },
+                    "nullable": false
+                },
+                "objectId": {
+                    "description": "User specified target object id to be created from the snapshot.",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9-_]+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "objectId"
+            ],
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "largePersonGroupId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9-_]+$"
+        },
+        "start": {
+            "required": false,
+            "type": "string"
+        },
+        "top": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+        }
+    }
+}

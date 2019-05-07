@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request body for face to face verification.",
+            "properties": {
+                "faceId1": {
+                    "description": "FaceId of the first face, comes from Face - Detect",
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "faceId2": {
+                    "description": "FaceId of the second face, comes from Face - Detect",
+                    "format": "uuid",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "faceId1",
+                "faceId2"
+            ],
+            "type": "object"
+        }
+    }
+}

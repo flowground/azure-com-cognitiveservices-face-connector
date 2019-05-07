@@ -1,0 +1,1110 @@
+{
+    "title": "Face Client",
+    "description": "An API for face detection, verification, and identification.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/cognitiveservices-Face/1.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://azure.local/",
+                    "{Endpoint}/face/v1.0",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apim_key": {
+                "label": "Ocp-Apim-Subscription-Key (apim_key)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Face_DetectWithUrl": {
+            "main": "./lib/actions/Face_DetectWithUrl.js",
+            "title": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
+            "description": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Face_DetectWithUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_List": {
+            "main": "./lib/actions/FaceList_List.js",
+            "title": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
+            "description": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_Delete": {
+            "main": "./lib/actions/FaceList_Delete.js",
+            "title": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
+            "description": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_Get": {
+            "main": "./lib/actions/FaceList_Get.js",
+            "title": "Retrieve a face list's information.",
+            "description": "Retrieve a face list's information.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_Update": {
+            "main": "./lib/actions/FaceList_Update.js",
+            "title": "Update information of a face list.",
+            "description": "Update information of a face list.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_Create": {
+            "main": "./lib/actions/FaceList_Create.js",
+            "title": "Create an empty face list. Up to 64 face lists are allowed to exist in one subscription.",
+            "description": "Create an empty face list. Up to 64 face lists are allowed to exist in one subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_AddFaceFromUrl": {
+            "main": "./lib/actions/FaceList_AddFaceFromUrl.js",
+            "title": "Add a face to a face list. The input face is specified as an image with a targetFace rectangle. It returns a persistedFaceId representing the added face, and persistedFaceId will not expire.",
+            "description": "Add a face to a face list. The input face is specified as an image with a targetFace rectangle. It returns a persistedFaceId representing the added face, and persistedFaceId will not expire.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_AddFaceFromUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FaceList_DeleteFace": {
+            "main": "./lib/actions/FaceList_DeleteFace.js",
+            "title": "Delete an existing face from a face list (given by a persistedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
+            "description": "Delete an existing face from a face list (given by a persistedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FaceList_DeleteFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Face_FindSimilar": {
+            "main": "./lib/actions/Face_FindSimilar.js",
+            "title": "Given query face's faceId, find the similar-looking faces from a faceId array, a face list or a large face list.",
+            "description": "Given query face's faceId, find the similar-looking faces from a faceId array, a face list or a large face list.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Face_FindSimilar.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Face_Group": {
+            "main": "./lib/actions/Face_Group.js",
+            "title": "Divide candidate faces into groups based on face similarity.",
+            "description": "Divide candidate faces into groups based on face similarity.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Face_Group.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Face_Identify": {
+            "main": "./lib/actions/Face_Identify.js",
+            "title": "1-to-many identification to find the closest matches of the specific query person face from a person group or large person group.",
+            "description": "1-to-many identification to find the closest matches of the specific query person face from a person group or large person group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Face_Identify.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_List": {
+            "main": "./lib/actions/LargeFaceList_List.js",
+            "title": "Retrieve information about all existing large face lists. Only largeFaceListId, name and userData will be returned.",
+            "description": "Retrieve information about all existing large face lists. Only largeFaceListId, name and userData will be returned.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_Delete": {
+            "main": "./lib/actions/LargeFaceList_Delete.js",
+            "title": "Delete an existing large face list according to faceListId. Persisted face images in the large face list will also be deleted.",
+            "description": "Delete an existing large face list according to faceListId. Persisted face images in the large face list will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_Get": {
+            "main": "./lib/actions/LargeFaceList_Get.js",
+            "title": "Retrieve a large face list's information.",
+            "description": "Retrieve a large face list's information.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_Update": {
+            "main": "./lib/actions/LargeFaceList_Update.js",
+            "title": "Update information of a large face list.",
+            "description": "Update information of a large face list.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_Create": {
+            "main": "./lib/actions/LargeFaceList_Create.js",
+            "title": "Create an empty large face list. Up to 64 large face lists are allowed to exist in one subscription.",
+            "description": "Create an empty large face list. Up to 64 large face lists are allowed to exist in one subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_ListFaces": {
+            "main": "./lib/actions/LargeFaceList_ListFaces.js",
+            "title": "List all faces in a large face list, and retrieve face information (including userData and persistedFaceIds of registered faces of the face).",
+            "description": "List all faces in a large face list, and retrieve face information (including userData and persistedFaceIds of registered faces of the face).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_ListFaces.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_AddFaceFromUrl": {
+            "main": "./lib/actions/LargeFaceList_AddFaceFromUrl.js",
+            "title": "Add a face to a large face list. The input face is specified as an image with a targetFace rectangle. It returns a persistedFaceId representing the added face, and persistedFaceId will not expire.",
+            "description": "Add a face to a large face list. The input face is specified as an image with a targetFace rectangle. It returns a persistedFaceId representing the added face, and persistedFaceId will not expire.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_AddFaceFromUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_DeleteFace": {
+            "main": "./lib/actions/LargeFaceList_DeleteFace.js",
+            "title": "Delete an existing face from a large face list (given by a persistedFaceId and a largeFaceListId). Persisted image related to the face will also be deleted.",
+            "description": "Delete an existing face from a large face list (given by a persistedFaceId and a largeFaceListId). Persisted image related to the face will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_DeleteFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_GetFace": {
+            "main": "./lib/actions/LargeFaceList_GetFace.js",
+            "title": "Retrieve information about a persisted face (specified by persistedFaceId and its belonging largeFaceListId).",
+            "description": "Retrieve information about a persisted face (specified by persistedFaceId and its belonging largeFaceListId).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_GetFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_UpdateFace": {
+            "main": "./lib/actions/LargeFaceList_UpdateFace.js",
+            "title": "Update a persisted face's userData field.",
+            "description": "Update a persisted face's userData field.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_UpdateFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_Train": {
+            "main": "./lib/actions/LargeFaceList_Train.js",
+            "title": "Queue a large face list training task, the training task may not be started immediately.",
+            "description": "Queue a large face list training task, the training task may not be started immediately.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_Train.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargeFaceList_GetTrainingStatus": {
+            "main": "./lib/actions/LargeFaceList_GetTrainingStatus.js",
+            "title": "Retrieve the training status of a large face list (completed or ongoing).",
+            "description": "Retrieve the training status of a large face list (completed or ongoing).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargeFaceList_GetTrainingStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_List": {
+            "main": "./lib/actions/LargePersonGroup_List.js",
+            "title": "List large person groups and their information.",
+            "description": "List large person groups and their information.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_Delete": {
+            "main": "./lib/actions/LargePersonGroup_Delete.js",
+            "title": "Delete an existing large person group. Persisted face features of all people in the large person group will also be deleted.",
+            "description": "Delete an existing large person group. Persisted face features of all people in the large person group will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_Get": {
+            "main": "./lib/actions/LargePersonGroup_Get.js",
+            "title": "Retrieve the information of a large person group, including its name and userData.",
+            "description": "Retrieve the information of a large person group, including its name and userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_Update": {
+            "main": "./lib/actions/LargePersonGroup_Update.js",
+            "title": "Update an existing large person group's display name and userData. The properties which does not appear in request body will not be updated.",
+            "description": "Update an existing large person group's display name and userData. The properties which does not appear in request body will not be updated.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_Create": {
+            "main": "./lib/actions/LargePersonGroup_Create.js",
+            "title": "Create a new large person group with specified largePersonGroupId, name and user-provided userData.",
+            "description": "Create a new large person group with specified largePersonGroupId, name and user-provided userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_List": {
+            "main": "./lib/actions/LargePersonGroupPerson_List.js",
+            "title": "List all persons in a large person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
+            "description": "List all persons in a large person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_Create": {
+            "main": "./lib/actions/LargePersonGroupPerson_Create.js",
+            "title": "Create a new person in a specified large person group.",
+            "description": "Create a new person in a specified large person group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_Delete": {
+            "main": "./lib/actions/LargePersonGroupPerson_Delete.js",
+            "title": "Delete an existing person from a large person group. All stored person data, and face features in the person entry will be deleted.",
+            "description": "Delete an existing person from a large person group. All stored person data, and face features in the person entry will be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_Get": {
+            "main": "./lib/actions/LargePersonGroupPerson_Get.js",
+            "title": "Retrieve a person's information, including registered persisted faces, name and userData.",
+            "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_Update": {
+            "main": "./lib/actions/LargePersonGroupPerson_Update.js",
+            "title": "Update name or userData of a person.",
+            "description": "Update name or userData of a person.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_AddFaceFromUrl": {
+            "main": "./lib/actions/LargePersonGroupPerson_AddFaceFromUrl.js",
+            "title": "Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.",
+            "description": "Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_AddFaceFromUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_DeleteFace": {
+            "main": "./lib/actions/LargePersonGroupPerson_DeleteFace.js",
+            "title": "Delete a face from a person. Relative feature for the persisted face will also be deleted.",
+            "description": "Delete a face from a person. Relative feature for the persisted face will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_DeleteFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_GetFace": {
+            "main": "./lib/actions/LargePersonGroupPerson_GetFace.js",
+            "title": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging largePersonGroupId).",
+            "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging largePersonGroupId).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_GetFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroupPerson_UpdateFace": {
+            "main": "./lib/actions/LargePersonGroupPerson_UpdateFace.js",
+            "title": "Update a person persisted face's userData field.",
+            "description": "Update a person persisted face's userData field.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroupPerson_UpdateFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_Train": {
+            "main": "./lib/actions/LargePersonGroup_Train.js",
+            "title": "Queue a large person group training task, the training task may not be started immediately.",
+            "description": "Queue a large person group training task, the training task may not be started immediately.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_Train.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LargePersonGroup_GetTrainingStatus": {
+            "main": "./lib/actions/LargePersonGroup_GetTrainingStatus.js",
+            "title": "Retrieve the training status of a large person group (completed or ongoing).",
+            "description": "Retrieve the training status of a large person group (completed or ongoing).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LargePersonGroup_GetTrainingStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_GetOperationStatus": {
+            "main": "./lib/actions/Snapshot_GetOperationStatus.js",
+            "title": "Retrieve the status of a take/apply snapshot operation.",
+            "description": "Retrieve the status of a take/apply snapshot operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_GetOperationStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_List": {
+            "main": "./lib/actions/PersonGroup_List.js",
+            "title": "List person groups and their information.",
+            "description": "List person groups and their information.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_Delete": {
+            "main": "./lib/actions/PersonGroup_Delete.js",
+            "title": "Delete an existing person group. Persisted face features of all people in the person group will also be deleted.",
+            "description": "Delete an existing person group. Persisted face features of all people in the person group will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_Get": {
+            "main": "./lib/actions/PersonGroup_Get.js",
+            "title": "Retrieve the information of a person group, including its name and userData.",
+            "description": "Retrieve the information of a person group, including its name and userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_Update": {
+            "main": "./lib/actions/PersonGroup_Update.js",
+            "title": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
+            "description": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_Create": {
+            "main": "./lib/actions/PersonGroup_Create.js",
+            "title": "Create a new person group with specified personGroupId, name and user-provided userData.",
+            "description": "Create a new person group with specified personGroupId, name and user-provided userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_List": {
+            "main": "./lib/actions/PersonGroupPerson_List.js",
+            "title": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
+            "description": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_Create": {
+            "main": "./lib/actions/PersonGroupPerson_Create.js",
+            "title": "Create a new person in a specified person group.",
+            "description": "Create a new person in a specified person group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_Delete": {
+            "main": "./lib/actions/PersonGroupPerson_Delete.js",
+            "title": "Delete an existing person from a person group. All stored person data, and face features in the person entry will be deleted.",
+            "description": "Delete an existing person from a person group. All stored person data, and face features in the person entry will be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_Get": {
+            "main": "./lib/actions/PersonGroupPerson_Get.js",
+            "title": "Retrieve a person's information, including registered persisted faces, name and userData.",
+            "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_Update": {
+            "main": "./lib/actions/PersonGroupPerson_Update.js",
+            "title": "Update name or userData of a person.",
+            "description": "Update name or userData of a person.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_AddFaceFromUrl": {
+            "main": "./lib/actions/PersonGroupPerson_AddFaceFromUrl.js",
+            "title": "Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.",
+            "description": "Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_AddFaceFromUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_DeleteFace": {
+            "main": "./lib/actions/PersonGroupPerson_DeleteFace.js",
+            "title": "Delete a face from a person. Relative feature for the persisted face will also be deleted.",
+            "description": "Delete a face from a person. Relative feature for the persisted face will also be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_DeleteFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_GetFace": {
+            "main": "./lib/actions/PersonGroupPerson_GetFace.js",
+            "title": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
+            "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_GetFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroupPerson_UpdateFace": {
+            "main": "./lib/actions/PersonGroupPerson_UpdateFace.js",
+            "title": "Update a person persisted face's userData field.",
+            "description": "Update a person persisted face's userData field.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroupPerson_UpdateFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_Train": {
+            "main": "./lib/actions/PersonGroup_Train.js",
+            "title": "Queue a person group training task, the training task may not be started immediately.",
+            "description": "Queue a person group training task, the training task may not be started immediately.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_Train.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PersonGroup_GetTrainingStatus": {
+            "main": "./lib/actions/PersonGroup_GetTrainingStatus.js",
+            "title": "Retrieve the training status of a person group (completed or ongoing).",
+            "description": "Retrieve the training status of a person group (completed or ongoing).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PersonGroup_GetTrainingStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_List": {
+            "main": "./lib/actions/Snapshot_List.js",
+            "title": "List all accessible snapshots with related information, including snapshots that were taken by the user, or snapshots to be applied to the user (subscription id was included in the applyScope in Snapshot - Take).",
+            "description": "List all accessible snapshots with related information, including snapshots that were taken by the user, or snapshots to be applied to the user (subscription id was included in the applyScope in Snapshot - Take).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_Take": {
+            "main": "./lib/actions/Snapshot_Take.js",
+            "title": "Submit an operation to take a snapshot of face list, large face list, person group or large person group, with user-specified snapshot type, source object id, apply scope and an optional user data.<br />\nThe snapshot interfaces are for users to backup and restore their face data from one face subscription to another, inside same region or across regions. The workflow contains two phases, user first calls Snapshot - Take to create a copy of the source object and store it as a snapshot, then calls Snapshot - Apply to paste the snapshot to target subscription. The snapshots are stored in a centralized location (per Azure instance), so that they can be applied cross accounts and regions.<br />\nTaking snapshot is an asynchronous operation. An operation id can be obtained from the \"Operation-Location\" field in response header, to be used in OperationStatus - Get for tracking the progress of creating the snapshot. The snapshot id will be included in the \"resourceLocation\" field in OperationStatus - Get response when the operation status is \"succeeded\".<br />\nSnapshot taking time depends on the number of person and face entries in the source object. It could be in seconds, or up to several hours for 1,000,000 persons with multiple faces.<br />\nSnapshots will be automatically expired and cleaned in 48 hours after it is created by Snapshot - Take. User can delete the snapshot using Snapshot - Delete by themselves any time before expiration.<br />\nTaking snapshot for a certain object will not block any other operations against the object. All read-only operations (Get/List and Identify/FindSimilar/Verify) can be conducted as usual. For all writable operations, including Add/Update/Delete the source object or its persons/faces and Train, they are not blocked but not recommended because writable updates may not be reflected on the snapshot during its taking. After snapshot taking is completed, all readable and writable operations can work as normal. Snapshot will also include the training results of the source object, which means target subscription the snapshot applied to does not need re-train the target object before calling Identify/FindSimilar.<br />\n* Free-tier subscription quota: 100 take operations per month.\n* S0-tier subscription quota: 100 take operations per day.",
+            "description": "Submit an operation to take a snapshot of face list, large face list, person group or large person group, with user-specified snapshot type, source object id, apply scope and an optional user data.<br />\nThe snapshot interfaces are for users to backup and restore their face data from one face subscription to another, inside same region or across regions. The workflow contains two phases, user first calls Snapshot - Take to create a copy of the source object and store it as a snapshot, then calls Snapshot - Apply to paste the snapshot to target subscription. The snapshots are stored in a centralized location (per Azure instance), so that they can be applied cross accounts and regions.<br />\nTaking snapshot is an asynchronous operation. An operation id can be obtained from the \"Operation-Location\" field in response header, to be used in OperationStatus - Get for tracking the progress of creating the snapshot. The snapshot id will be included in the \"resourceLocation\" field in OperationStatus - Get response when the operation status is \"succeeded\".<br />\nSnapshot taking time depends on the number of person and face entries in the source object. It could be in seconds, or up to several hours for 1,000,000 persons with multiple faces.<br />\nSnapshots will be automatically expired and cleaned in 48 hours after it is created by Snapshot - Take. User can delete the snapshot using Snapshot - Delete by themselves any time before expiration.<br />\nTaking snapshot for a certain object will not block any other operations against the object. All read-only operations (Get/List and Identify/FindSimilar/Verify) can be conducted as usual. For all writable operations, including Add/Update/Delete the source object or its persons/faces and Train, they are not blocked but not recommended because writable updates may not be reflected on the snapshot during its taking. After snapshot taking is completed, all readable and writable operations can work as normal. Snapshot will also include the training results of the source object, which means target subscription the snapshot applied to does not need re-train the target object before calling Identify/FindSimilar.<br />\n* Free-tier subscription quota: 100 take operations per month.\n* S0-tier subscription quota: 100 take operations per day.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_Take.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_Delete": {
+            "main": "./lib/actions/Snapshot_Delete.js",
+            "title": "Delete an existing snapshot according to the snapshotId. All object data and information in the snapshot will also be deleted. Only the source subscription who took the snapshot can delete the snapshot. If the user does not delete a snapshot with this API, the snapshot will still be automatically deleted in 48 hours after creation.",
+            "description": "Delete an existing snapshot according to the snapshotId. All object data and information in the snapshot will also be deleted. Only the source subscription who took the snapshot can delete the snapshot. If the user does not delete a snapshot with this API, the snapshot will still be automatically deleted in 48 hours after creation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_Get": {
+            "main": "./lib/actions/Snapshot_Get.js",
+            "title": "Retrieve information about a snapshot. Snapshot is only accessible to the source subscription who took it, and target subscriptions included in the applyScope in Snapshot - Take.",
+            "description": "Retrieve information about a snapshot. Snapshot is only accessible to the source subscription who took it, and target subscriptions included in the applyScope in Snapshot - Take.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_Update": {
+            "main": "./lib/actions/Snapshot_Update.js",
+            "title": "Update the information of a snapshot. Only the source subscription who took the snapshot can update the snapshot.",
+            "description": "Update the information of a snapshot. Only the source subscription who took the snapshot can update the snapshot.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Snapshot_Apply": {
+            "main": "./lib/actions/Snapshot_Apply.js",
+            "title": "Submit an operation to apply a snapshot to current subscription. For each snapshot, only subscriptions included in the applyScope of Snapshot - Take can apply it.<br />\nThe snapshot interfaces are for users to backup and restore their face data from one face subscription to another, inside same region or across regions. The workflow contains two phases, user first calls Snapshot - Take to create a copy of the source object and store it as a snapshot, then calls Snapshot - Apply to paste the snapshot to target subscription. The snapshots are stored in a centralized location (per Azure instance), so that they can be applied cross accounts and regions.<br />\nApplying snapshot is an asynchronous operation. An operation id can be obtained from the \"Operation-Location\" field in response header, to be used in OperationStatus - Get for tracking the progress of applying the snapshot. The target object id will be included in the \"resourceLocation\" field in OperationStatus - Get response when the operation status is \"succeeded\".<br />\nSnapshot applying time depends on the number of person and face entries in the snapshot object. It could be in seconds, or up to 1 hour for 1,000,000 persons with multiple faces.<br />\nSnapshots will be automatically expired and cleaned in 48 hours after it is created by Snapshot - Take. So the target subscription is required to apply the snapshot in 48 hours since its creation.<br />\nApplying a snapshot will not block any other operations against the target object, however it is not recommended because the correctness cannot be guaranteed during snapshot applying. After snapshot applying is completed, all operations towards the target object can work as normal. Snapshot also includes the training results of the source object, which means target subscription the snapshot applied to does not need re-train the target object before calling Identify/FindSimilar.<br />\nOne snapshot can be applied multiple times in parallel, while currently only CreateNew apply mode is supported, which means the apply operation will fail if target subscription already contains an object of same type and using the same objectId. Users can specify the \"objectId\" in request body to avoid such conflicts.<br />\n* Free-tier subscription quota: 100 apply operations per month.\n* S0-tier subscription quota: 100 apply operations per day.",
+            "description": "Submit an operation to apply a snapshot to current subscription. For each snapshot, only subscriptions included in the applyScope of Snapshot - Take can apply it.<br />\nThe snapshot interfaces are for users to backup and restore their face data from one face subscription to another, inside same region or across regions. The workflow contains two phases, user first calls Snapshot - Take to create a copy of the source object and store it as a snapshot, then calls Snapshot - Apply to paste the snapshot to target subscription. The snapshots are stored in a centralized location (per Azure instance), so that they can be applied cross accounts and regions.<br />\nApplying snapshot is an asynchronous operation. An operation id can be obtained from the \"Operation-Location\" field in response header, to be used in OperationStatus - Get for tracking the progress of applying the snapshot. The target object id will be included in the \"resourceLocation\" field in OperationStatus - Get response when the operation status is \"succeeded\".<br />\nSnapshot applying time depends on the number of person and face entries in the snapshot object. It could be in seconds, or up to 1 hour for 1,000,000 persons with multiple faces.<br />\nSnapshots will be automatically expired and cleaned in 48 hours after it is created by Snapshot - Take. So the target subscription is required to apply the snapshot in 48 hours since its creation.<br />\nApplying a snapshot will not block any other operations against the target object, however it is not recommended because the correctness cannot be guaranteed during snapshot applying. After snapshot applying is completed, all operations towards the target object can work as normal. Snapshot also includes the training results of the source object, which means target subscription the snapshot applied to does not need re-train the target object before calling Identify/FindSimilar.<br />\nOne snapshot can be applied multiple times in parallel, while currently only CreateNew apply mode is supported, which means the apply operation will fail if target subscription already contains an object of same type and using the same objectId. Users can specify the \"objectId\" in request body to avoid such conflicts.<br />\n* Free-tier subscription quota: 100 apply operations per month.\n* S0-tier subscription quota: 100 apply operations per day.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Snapshot_Apply.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Face_VerifyFaceToFace": {
+            "main": "./lib/actions/Face_VerifyFaceToFace.js",
+            "title": "Verify whether two faces belong to a same person or whether one face belongs to a person.",
+            "description": "Verify whether two faces belong to a same person or whether one face belongs to a person.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Face_VerifyFaceToFace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

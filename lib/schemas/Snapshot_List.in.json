@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "FaceList",
+                "LargeFaceList",
+                "LargePersonGroup",
+                "PersonGroup"
+            ]
+        },
+        "applyScope": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "uuid",
+                "type": "string",
+                "nullable": false
+            }
+        }
+    }
+}
